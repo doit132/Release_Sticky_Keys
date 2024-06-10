@@ -1,0 +1,6 @@
+[
+{
+  "directory": "C:\\Users\\doit132\\Desktop\\learn",
+  "arguments": ["x86_64-w64-mingw32-g++.exe", "-c", "-Qunused-arguments", "-m64", "-Iinc", "-o", "build\\.objs\\keys\\mingw\\x86_64\\release\\src\\keys.cpp.obj", "src\\keys.cpp"],
+  "file": "src\\keys.cpp"
+}]
