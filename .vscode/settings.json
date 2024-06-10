@@ -39,6 +39,10 @@
         "*.ini": "ini",
         "*.code-snippets": "json",
         "*.rh": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "cstdio": "cpp",
+        "iterator": "c",
+        "xmemory": "c",
+        "xutility": "c"
     },
 }
