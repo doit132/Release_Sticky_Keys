@@ -16,6 +16,7 @@
     ],
     // 启用/禁用服务器端的补全排序功能：此选项用于控制 clangd 是否使用服务器端的逻辑来对代码补全建议进行排序。如果启用，clangd 将利用其内置算法根据上下文和代码语义对补全项进行排序，以提供更相关的补全建议
     "clangd.serverCompletionRanking": true,
+    /* End ==== clangd */
     "files.associations": {
         ".clang-format": "yaml",
         "*.toml": "toml",
@@ -40,5 +41,4 @@
         "*.rh": "cpp",
         "iostream": "cpp"
     },
-    /* End ==== clangd */
 }

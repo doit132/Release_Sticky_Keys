@@ -13,6 +13,9 @@ target("keys")
     add_linkdirs("./lib") -- 添加链接库搜索目录, 一般他是与 add_links 配合使用的
     add_links("interception")
 
+    -- 在链接阶段添加 -mwindows 选项, 从而隐藏控制台窗口
+    add_ldflags("-Wl,-subsystem,windows",{force=true})
+
     -- 定义复制 interception.dll 到输出目录的规则
     after_build(function (target)
         -- 获取目标输出目录
