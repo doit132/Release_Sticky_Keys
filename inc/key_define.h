@@ -1,3 +1,5 @@
+#pragma once
+
 enum ScanCode
 {
     SCANCODE_LWIN = 0x5B,
@@ -34,3 +36,7 @@ enum PhyKeyState
 #else
     #define DBGprint(...)
 #endif
+
+extern bool phy_Alt_pressed;
+extern bool phy_Ctrl_pressed;
+extern bool phy_Shift_pressed;

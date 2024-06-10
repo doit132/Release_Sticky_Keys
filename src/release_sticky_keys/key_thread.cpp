@@ -1,12 +1,6 @@
+#include "key_thread.h"
 #include "interception.h"
 #include "key_define.h"
-
-#include <cstdio>
-#include <windows.h>
-
-bool phy_Alt_pressed = PHY_KEY_UP;
-bool phy_Ctrl_pressed = PHY_KEY_UP;
-bool phy_Shift_pressed = PHY_KEY_UP;
 
 // 全局变量，用于线程同步
 HANDLE g_ThreadHandle = NULL;
@@ -66,7 +60,7 @@ DWORD WINAPI releaseCtrlKeyState(LPVOID lpParam)
         if (phy_Ctrl_pressed == PHY_KEY_DOWN)
         {
             // printf("phy_ctrl is down\n");
-            // Sleep(50);
+            Sleep(50);
             continue;
         }
         // 这里使用 count_ctrl 做次数控制, 是因为如果使用纯软件做按键模拟,
@@ -74,7 +68,7 @@ DWORD WINAPI releaseCtrlKeyState(LPVOID lpParam)
         // 那么软件模拟的按键可能会失效, 比如软件模拟 ctrl+w 因为立即释放了 ctrl
         // 所以实际输出就只是 w
         while (KEY_DOWN(VK_LCONTROL) || KEY_DOWN(VK_RCONTROL))
-        { 
+        {
             count_ctrl++;
             Sleep(2);
             if (count_ctrl == 10)
@@ -89,7 +83,7 @@ DWORD WINAPI releaseCtrlKeyState(LPVOID lpParam)
             keybd_event(VK_RCONTROL, 0, KEYEVENTF_KEYUP, 0);
         }
         count_ctrl = 0;
-        // Sleep(50);
+        Sleep(50);
     }
 }
 
@@ -103,7 +97,7 @@ DWORD WINAPI releaseShiftKeyState(LPVOID lpParam)
         if (phy_Shift_pressed == PHY_KEY_DOWN)
         {
             // printf("phy_lshift is down\n");
-            // Sleep(20);
+            Sleep(50);
             continue;
         }
 
@@ -126,7 +120,7 @@ DWORD WINAPI releaseShiftKeyState(LPVOID lpParam)
             keybd_event(VK_RSHIFT, 0, KEYEVENTF_KEYUP, 0);
         }
         count_shift = 0;
-        // Sleep(20);
+        Sleep(50);
     }
 }
 
@@ -140,7 +134,7 @@ DWORD WINAPI releaseAltKeyState(LPVOID lpParam)
         if (phy_Alt_pressed == PHY_KEY_DOWN)
         {
             // printf("phy_alt is down\n");
-            // Sleep(50);
+            Sleep(50);
             continue;
         }
 
@@ -149,7 +143,7 @@ DWORD WINAPI releaseAltKeyState(LPVOID lpParam)
         // 那么软件模拟的按键可能会失效, 比如软件模拟 alt+f4 因为立即释放了 alt
         // 所以实际输出就只是 f4
         while (KEY_DOWN(VK_LMENU) || KEY_DOWN(VK_RMENU))
-        { 
+        {
             count_alt++;
             Sleep(2);
             if (count_alt == 10)
@@ -164,31 +158,6 @@ DWORD WINAPI releaseAltKeyState(LPVOID lpParam)
             keybd_event(VK_RMENU, 0, KEYEVENTF_KEYUP, 0);
         }
         count_alt = 0;
-        // Sleep(50);
+        Sleep(50);
     }
-}
-
-int main()
-{
-    // 隐藏命令窗口
-    HWND hWnd = GetConsoleWindow();
-    ShowWindow(hWnd, SW_HIDE);
-
-    // 创建线程
-    g_ThreadHandle = CreateThread(NULL, 0, CheckPhyKeyState, NULL, 0, NULL);
-    g_ThreadHandle_Alt = CreateThread(NULL, 0, releaseAltKeyState, NULL, 0, NULL);
-    g_ThreadHandle_Ctrl = CreateThread(NULL, 0, releaseCtrlKeyState, NULL, 0, NULL);
-    g_ThreadHandle_Shift = CreateThread(NULL, 0, releaseShiftKeyState, NULL, 0, NULL);
-
-    // 等待线程退出
-    WaitForSingleObject(g_ThreadHandle, INFINITE);
-    WaitForSingleObject(g_ThreadHandle_Alt, INFINITE);
-    WaitForSingleObject(g_ThreadHandle_Ctrl, INFINITE);
-    WaitForSingleObject(g_ThreadHandle_Shift, INFINITE);
-
-    // 关闭线程句柄
-    CloseHandle(g_ThreadHandle);
-    CloseHandle(g_ThreadHandle_Alt);
-    CloseHandle(g_ThreadHandle_Ctrl);
-    CloseHandle(g_ThreadHandle_Shift);
 }
