@@ -1,4 +1,7 @@
-#pragma once
+#ifndef _KEY_DEFINE_H_
+#define _KEY_DEFINE_H_
+    
+#include <stdio.h>
 
 enum ScanCode
 {
@@ -40,3 +43,5 @@ enum PhyKeyState
 extern bool phy_Alt_pressed;
 extern bool phy_Ctrl_pressed;
 extern bool phy_Shift_pressed;
+
+#endif

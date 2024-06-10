@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _KEY_THREAD_H_
+#define _KEY_THREAD_H_
 
 #include <windows.h>
 
@@ -12,3 +13,5 @@ DWORD WINAPI CheckPhyKeyState(LPVOID lpParam);
 DWORD WINAPI releaseCtrlKeyState(LPVOID lpParam);
 DWORD WINAPI releaseShiftKeyState(LPVOID lpParam);
 DWORD WINAPI releaseAltKeyState(LPVOID lpParam);
+
+#endif
