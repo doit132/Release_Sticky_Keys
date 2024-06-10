@@ -43,6 +43,12 @@
         "cstdio": "cpp",
         "iterator": "c",
         "xmemory": "c",
-        "xutility": "c"
+        "xutility": "c",
+        "iosfwd": "cpp",
+        "xlocbuf": "cpp",
+        "format": "cpp",
+        "vector": "cpp",
+        "xstring": "cpp",
+        "ostream": "cpp"
     },
 }

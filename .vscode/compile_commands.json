@@ -6,11 +6,6 @@
 },
 {
   "directory": "c:\\Users\\doit132\\Desktop\\Release_Sticky_Keys",
-  "arguments": ["x86_64-w64-mingw32-g++.exe", "-c", "-Qunused-arguments", "-m64", "-Iinc", "-o", "build\\.objs\\utils\\mingw\\x86_64\\release\\src\\utils.cpp.obj", "src\\utils.cpp"],
-  "file": "src\\utils.cpp"
-},
-{
-  "directory": "c:\\Users\\doit132\\Desktop\\Release_Sticky_Keys",
   "arguments": ["x86_64-w64-mingw32-g++.exe", "-c", "-Qunused-arguments", "-m64", "-Iinc", "-o", "build\\.objs\\release_sticky_keys\\mingw\\x86_64\\release\\src\\release_sticky_keys\\key_define.cpp.obj", "src\\release_sticky_keys\\key_define.cpp"],
   "file": "src\\release_sticky_keys\\key_define.cpp"
 },
@@ -28,4 +23,9 @@
   "directory": "c:\\Users\\doit132\\Desktop\\Release_Sticky_Keys",
   "arguments": ["x86_64-w64-mingw32-g++.exe", "-c", "-Qunused-arguments", "-m64", "-Iinc", "-o", "build\\.objs\\mouse\\mingw\\x86_64\\release\\src\\mouse\\mouse.cpp.obj", "src\\mouse\\mouse.cpp"],
   "file": "src\\mouse\\mouse.cpp"
+},
+{
+  "directory": "c:\\Users\\doit132\\Desktop\\Release_Sticky_Keys",
+  "arguments": ["x86_64-w64-mingw32-g++.exe", "-c", "-Qunused-arguments", "-m64", "-Iinc", "-o", "build\\.objs\\utils\\mingw\\x86_64\\release\\src\\utils.cpp.obj", "src\\utils.cpp"],
+  "file": "src\\utils.cpp"
 }]

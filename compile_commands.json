@@ -21,11 +21,11 @@
 },
 {
   "directory": "C:\\Users\\doit132\\Desktop\\Release_Sticky_Keys",
-  "arguments": ["x86_64-w64-mingw32-g++.exe", "-c", "-Qunused-arguments", "-m64", "-Iinc", "-o", "build\\.objs\\utils\\mingw\\x86_64\\release\\src\\utils.cpp.obj", "src\\utils.cpp"],
-  "file": "src\\utils.cpp"
+  "arguments": ["x86_64-w64-mingw32-g++.exe", "-c", "-Qunused-arguments", "-m64", "-Iinc", "-o", "build\\.objs\\caps2esc\\mingw\\x86_64\\release\\src\\caps2esc\\caps2esc.cpp.obj", "src\\caps2esc\\caps2esc.cpp"],
+  "file": "src\\caps2esc\\caps2esc.cpp"
 },
 {
   "directory": "C:\\Users\\doit132\\Desktop\\Release_Sticky_Keys",
-  "arguments": ["x86_64-w64-mingw32-g++.exe", "-c", "-Qunused-arguments", "-m64", "-Iinc", "-o", "build\\.objs\\caps2esc\\mingw\\x86_64\\release\\src\\caps2esc\\caps2esc.cpp.obj", "src\\caps2esc\\caps2esc.cpp"],
-  "file": "src\\caps2esc\\caps2esc.cpp"
+  "arguments": ["x86_64-w64-mingw32-g++.exe", "-c", "-Qunused-arguments", "-m64", "-Iinc", "-o", "build\\.objs\\utils\\mingw\\x86_64\\release\\src\\utils.cpp.obj", "src\\utils.cpp"],
+  "file": "src\\utils.cpp"
 }]
