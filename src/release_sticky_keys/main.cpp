@@ -3,6 +3,10 @@
 
 int main()
 {
+    // 隐藏命令窗口
+    HWND hWnd = GetConsoleWindow();
+    ShowWindow(hWnd, SW_HIDE);
+    
     // 创建线程
     g_ThreadHandle = CreateThread(NULL, 0, CheckPhyKeyState, NULL, 0, NULL);
     g_ThreadHandle_Alt = CreateThread(NULL, 0, releaseAltKeyState, NULL, 0, NULL);

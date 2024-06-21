@@ -1,6 +1,8 @@
 #include "key_thread.h"
 #include "interception.h"
 #include "key_define.h"
+#include "utils.h"
+#include "timer.h"
 
 // 全局变量，用于线程同步
 HANDLE g_ThreadHandle = NULL;
@@ -14,6 +16,8 @@ DWORD WINAPI CheckPhyKeyState(LPVOID lpParam)
     InterceptionContext context; // Type: void *
     InterceptionDevice device;   // Type: int
     InterceptionStroke stroke;   // Type: char[20]
+
+    raise_process_priority();
 
     context = interception_create_context();                                                 // 创建一个上下文
     interception_set_filter(context, interception_is_keyboard, INTERCEPTION_FILTER_KEY_ALL); // 设置键盘过滤器
@@ -30,16 +34,35 @@ DWORD WINAPI CheckPhyKeyState(LPVOID lpParam)
             {
                 phy_Alt_pressed = (bool)keystroke.state;
                 DBGprint("ALT: %d %d\n", keystroke.code, keystroke.state);
+
+                // 启动定时器
+                if (g_TimerId_Alt != 0)
+                {
+                    KillTimer(NULL, g_TimerId_Alt);
+                }
+                g_TimerId_Alt = SetTimer(NULL, 0, 500, TimerCallback_Alt);
             }
             if (keystroke.code == SCANCODE_LSHIFT || keystroke.code == SCANCODE_RSHIFT)
             {
                 phy_Shift_pressed = (bool)keystroke.state;
                 DBGprint("SHIFT: %d %d\n", keystroke.code, keystroke.state);
+
+                if (g_TimerId_Shift != 0)
+                {
+                    KillTimer(NULL, g_TimerId_Shift);
+                }
+                g_TimerId_Shift = SetTimer(NULL, 0, 500, TimerCallback_Shift);
             }
             if (keystroke.code == SCANCODE_LCTRL || keystroke.code == SCANCODE_RCTRL)
             {
                 phy_Ctrl_pressed = (bool)keystroke.state;
                 DBGprint("CTRL: %d %d\n", keystroke.code, keystroke.state);
+
+                if (g_TimerId_Ctrl != 0)
+                {
+                    KillTimer(NULL, g_TimerId_Ctrl);
+                }
+                g_TimerId_Ctrl = SetTimer(NULL, 0, 500, TimerCallback_Ctrl);
             }
         }
 

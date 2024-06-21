@@ -1,8 +1,8 @@
 -- Start ==== 全局目标
 -- 根域, 影响所有target（demo和test都会加上此宏定义）
 add_includedirs("inc/")
--- 在链接阶段添加 -mwindows 选项, 从而隐藏控制台窗口
-add_ldflags("-Wl,-subsystem,windows",{force=true})
+-- 在链接阶段添加 -mwindows 选项, 从而隐藏控制台窗口, 会导致无法在终端中输出信息
+-- add_ldflags("-Wl,-subsystem,windows",{force=true})
 -- End ==== 全局目标
 
 -- Start ==== rules 规则
@@ -19,17 +19,28 @@ target_end()
 target("mouse")
     set_kind("binary")
     add_files("./src/mouse/*.cpp")
-    add_deps("utils")
     add_linkdirs("./lib") -- 添加链接库搜索目录, 一般他是与 add_links 配合使用的
     add_links("interception")
+
+    -- 定义复制 interception.dll 到输出目录的规则
+    after_build(function (target)
+        -- 获取目标输出目录
+        local target_dir = path.directory(target:targetfile())
+
+        -- 定义 dll 文件路径
+        local dll_file = path.join("lib", "interception.dll")
+
+        -- 复制 dll 文件到目标输出目录
+        os.cp(dll_file, target_dir)
+    end)
 target_end()
 
 target("release_sticky_keys")
     set_kind("binary")
     add_files("src/release_sticky_keys/*.cpp")
-    add_deps("utils")
     add_linkdirs("./lib") -- 添加链接库搜索目录, 一般他是与 add_links 配合使用的
     add_links("interception")
+    add_deps("utils")
 
     -- 定义复制 interception.dll 到输出目录的规则
     after_build(function (target)
